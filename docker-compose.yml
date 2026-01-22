@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  ragflow:
+    image: infiniflow/ragflow:v0.23.1
+    container_name: onboarding-ragflow
+    ports:
+      - "8080:9380"
+    environment:
+      - MYSQL_PASSWORD=ragflow_password
+      - REDIS_PASSWORD=ragflow_redis
+      - MINIO_USER=ragflow
+      - MINIO_PASSWORD=ragflow_minio
+    volumes:
+      - ./data:/ragflow/data
+      - ./service_conf.yaml:/ragflow/conf/service_conf.yaml
+    restart: unless-stopped
+    networks:
+      - ragflow-network
+
+networks:
+  ragflow-network:
+    driver: bridge

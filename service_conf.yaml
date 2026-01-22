@@ -1,0 +1,59 @@
+# RAGFlow 服务配置文件
+# 用于新员工入职智能问答助手
+
+# API服务器配置
+host: 0.0.0.0
+port: 9380
+
+# 数据库配置
+mysql:
+  name: ragflow
+  user: root
+  password: ragflow_password
+  host: mysql
+  port: 3306
+
+# Redis配置
+redis:
+  host: redis
+  port: 6379
+  password: ragflow_redis
+  db: 0
+
+# MinIO对象存储配置
+minio:
+  user: ragflow
+  password: ragflow_minio
+  host: minio:9000
+
+# 默认LLM配置（请替换为你的API Key）
+user_default_llm:
+  factory: "OpenAI"
+  model_name: "gpt-3.5-turbo"
+  api_key: "your-openai-api-key-here"
+  # 如果使用国内服务，可以改为：
+  # factory: "Zhipu"  # 智谱AI
+  # model_name: "glm-4"
+  # api_key: "your-zhipu-api-key"
+
+# 向量模型配置
+user_default_embedding_model:
+  factory: "OpenAI"
+  model_name: "text-embedding-ada-002"
+  api_key: "your-openai-api-key-here"
+
+# 文档解析配置
+deepdoc:
+  parser:
+    pdf:
+      ocr: true  # 启用OCR识别扫描件
+    docx:
+      enabled: true
+    excel:
+      enabled: true
+    ppt:
+      enabled: true
+
+# 日志配置
+logging:
+  level: INFO
